@@ -19,3 +19,10 @@ test("handle shouting", () => {
 test("two names", () => {
   expect(greet(["Jill", "Jane"])).toMatch("Hello, Jill and Jane");
 });
+
+// Requirement 5
+test("abitrary number of names", () => {
+  expect(greet(["Amy", "Brian", "Charlotte"])).toMatch(
+    "Hello, Amy, Brian, and Charlotte."
+  );
+});
