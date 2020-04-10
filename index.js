@@ -1,27 +1,48 @@
-function greet(name) {
-  // checks for an array of names
-  if (Array.isArray(name)) {
-    // two names
-    if (name.length == 2) {
-      return `Hello, ${name[0]} and ${name[1]}.`;
-    }
+function formatNormalNames(names) {
+  if (names.length == 0) return "";
+  let lastName = names.pop();
+  let otherNames = names.length > 1 ? names.join(", ") + "," : names[0];
+  return `Hello, ${otherNames} and ${lastName}.`;
+}
 
-    // more than two names
-    return `Hello,${name.map((n, i, arr) => {
-      // if name is the last name in the list, print "and" followed by the name
-      if (i == arr.length - 1) {
-        return ` and ${n}.`;
-      }
-      // else, just print the name
-      return ` ${n}`;
-    })}`;
+function formatShoutingNames(names) {
+  if (names.length == 0) return "";
+  let lastName = names.pop();
+  let otherNames = names.length > 1 ? names.join(", ") + "," : names[0];
+  return `HELLO, ${otherNames} AND ${lastName}!`;
+}
+
+function greet(name) {
+  const normalSingleName = (name) => `Hello, ${name}.`;
+  const shoutSingleName = (name) => `HELLO ${name}!`;
+
+  // null check
+  if (name == null) return normalSingleName("my friend");
+
+  // checks for an array of names otherwise puts the single name into an array
+  if (!Array.isArray(name)) {
+    name = [name];
   }
 
-  // checks for uppercase
-  if (name && name == name.toUpperCase()) return `HELLO ${name}!`;
+  // creates arrays of normal and shouting names
+  let normalNames = name.filter((n) => n != n.toUpperCase());
+  let shoutingNames = name.filter((n) => n == n.toUpperCase());
 
-  // otherwise returns the name or the default phrase if there's no name
-  return `Hello, ${name || "my friend"}.`;
+  let normalText =
+    normalNames.length != 1
+      ? formatNormalNames(normalNames)
+      : normalSingleName(normalNames[0]);
+
+  let shoutingText =
+    shoutingNames.length != 1
+      ? formatShoutingNames(shoutingNames)
+      : shoutSingleName(shoutingNames[0]);
+
+  // determines which text to return (possibly both)
+  if (normalText == "") return shoutingText;
+  if (shoutingText == "") return normalText;
+
+  return `${normalText} AND ${shoutingText}`;
 }
 
 module.exports = greet;
