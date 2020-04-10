@@ -9,3 +9,8 @@ test("simple greeting", () => {
 test("name is null", () => {
   expect(greet(null)).toMatch("Hello, my friend.");
 });
+
+// Requirement 3
+test("handle shouting", () => {
+  expect(greet("JERRY")).toMatch("HELLO JERRY!");
+});
