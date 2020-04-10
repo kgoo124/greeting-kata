@@ -14,3 +14,8 @@ test("name is null", () => {
 test("handle shouting", () => {
   expect(greet("JERRY")).toMatch("HELLO JERRY!");
 });
+
+// Requirement 4
+test("two names", () => {
+  expect(greet(["Jill", "Jane"])).toMatch("Hello, Jill and Jane");
+});
