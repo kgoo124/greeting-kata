@@ -1,3 +1,8 @@
+// a function passed to .reduce that splits words by commas
+const splitCommas = (names, name) => {
+  return [...names, ...name.split(", ")];
+};
+
 function formatNormalNames(names) {
   if (names.length == 0) return "";
   let lastName = names.pop();
@@ -23,6 +28,9 @@ function greet(name) {
   if (!Array.isArray(name)) {
     name = [name];
   }
+
+  // split commas
+  name = name.reduce(splitCommas, []);
 
   // creates arrays of normal and shouting names
   let normalNames = name.filter((n) => n != n.toUpperCase());
