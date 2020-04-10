@@ -40,3 +40,10 @@ test("splitting commas", () => {
     "Hello, Bob, Charlie, and Dianne."
   );
 });
+
+// Requirement 8
+test("escaping intentional commas", () => {
+  expect(greet(["Bob", '"Charlie, Dianne"'])).toMatch(
+    "Hello, Bob and Charlie, Dianne."
+  );
+});
