@@ -33,3 +33,10 @@ test("mixing normal and shouting names", () => {
     "Hello, Amy and Charlotte. AND HELLO BRIAN!"
   );
 });
+
+// Requirement 7
+test("splitting commas", () => {
+  expect(greet(["Bob", "Charlie, Dianne"])).toMatch(
+    "Hello, Bob, Charlie, and Dianne."
+  );
+});
