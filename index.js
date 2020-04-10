@@ -1,5 +1,10 @@
 // a function passed to .reduce that splits words by commas
 const splitCommas = (names, name) => {
+  // used to not split the name if intentional quotes are used
+  if (name[0] === '"') {
+    const escapedName = name.substr(1, name.length - 2);
+    return [...names, escapedName];
+  }
   return [...names, ...name.split(", ")];
 };
 
