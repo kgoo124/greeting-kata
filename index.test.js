@@ -26,3 +26,10 @@ test("abitrary number of names", () => {
     "Hello, Amy, Brian, and Charlotte."
   );
 });
+
+// Requirement 6
+test("mixing normal and shouting names", () => {
+  expect(greet(["Amy", "BRIAN", "Charlotte"])).toMatch(
+    "Hello, Amy and Charlotte. AND HELLO BRIAN!"
+  );
+});
